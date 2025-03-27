@@ -1,4 +1,4 @@
-package modules.cliente;
+package module.cliente.model;
 
 import java.time.LocalDate;
 

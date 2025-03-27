@@ -1,7 +1,7 @@
-package modules.biblioteca;
+package module.biblioteca.model;
 
-import modules.cliente.Cliente;
-import modules.livro.Livro;
+import module.cliente.model.Cliente;
+import module.livro.model.Livro;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package modules.livro;
+package module.livro.model;
 
 import java.time.LocalDate;
 

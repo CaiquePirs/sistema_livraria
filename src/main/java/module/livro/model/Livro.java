@@ -1,4 +1,4 @@
-package modules.livro;
+package module.livro.model;
 
 import java.time.LocalDate;
 
@@ -11,12 +11,11 @@ public class Livro {
     private LocalDate dataCadastro;
     private  LocalDate dataAtualizacao;
 
-    Livro(int id, String titulo, Autor autor, LocalDate dataCadastro, LocalDate dataAtualizacao){
+    Livro(int id, String titulo, Autor autor, LocalDate dataCadastro){
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.dataCadastro = dataCadastro;
-        this.dataAtualizacao = dataAtualizacao;
         status = true;
     }
 
