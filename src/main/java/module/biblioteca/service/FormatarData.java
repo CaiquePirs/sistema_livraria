@@ -1,14 +1,15 @@
-package service.BibliotecaService;
+package module.biblioteca.service;
+
+import module.biblioteca.exception.ErroFormatarDataException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class FormatarData {
 
-    private String dataString;
     private LocalDate dataFormatada;
 
-    public LocalDate formatarData(String dataString){
+    public LocalDate formatarData(String dataString) throws ErroFormatarDataException{
 
             // Definir o formato do padrão da data
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -17,5 +18,6 @@ public class FormatarData {
             dataFormatada = LocalDate.parse(dataString, formatter);
 
             return dataFormatada;
+
     }
-}
+    }
