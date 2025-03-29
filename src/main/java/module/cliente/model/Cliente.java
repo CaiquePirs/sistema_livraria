@@ -1,5 +1,8 @@
 package module.cliente.model;
 
+import module.biblioteca.model.Biblioteca;
+import module.biblioteca.service.FormatarData;
+
 import java.time.LocalDate;
 
 public class Cliente {
@@ -10,16 +13,9 @@ public class Cliente {
     private String email;
     private LocalDate dataNascimento;
 
-    Cliente(int id, String nome, String email){
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-    }
-
-    public String clienteInfo(){
-
+    public String dadosCliente(){
         return "Id: " + id + " Nome: " + nome
-                + " Email: " + email + "Data de nascimento: " + dataNascimento;
+                + " Email: " + email + " Data de nascimento: " + dataNascimento;
     }
 
     public int getId() {
