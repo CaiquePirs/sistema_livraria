@@ -1,7 +1,7 @@
 package module.biblioteca.exception;
 
 public class ErroFormatarDataException extends RuntimeException{
-    public String ErroFormatarDataException(String menssagem){
+    public String ErroFormatarDataException(){
         return "Erro ao formatar a data";
     }
 }

@@ -9,15 +9,21 @@ public class FormatarData {
 
     private LocalDate dataFormatada;
 
-    public LocalDate formatarData(String dataString) throws ErroFormatarDataException{
+    public LocalDate formatar(String dataString) throws ErroFormatarDataException{
 
-            // Definir o formato do padrão da data
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+           try{
 
-            // Converter a String para LocalDate
-            dataFormatada = LocalDate.parse(dataString, formatter);
+               // Formato padrão da data
+               DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-            return dataFormatada;
+               // Converter a String para LocalDate
+               dataFormatada = LocalDate.parse(dataString, formatter);
+
+               return dataFormatada;
+
+           }catch(ErroFormatarDataException e){
+               throw new ErroFormatarDataException();
+           }
 
     }
     }
