@@ -1,4 +1,4 @@
-package module.biblioteca.model;
+package module.emprestimo.model;
 
 import module.cliente.model.Cliente;
 import module.livro.model.Livro;

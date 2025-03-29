@@ -1,6 +1,7 @@
 package module.biblioteca.model;
 
 import module.cliente.model.Cliente;
+import module.emprestimo.model.Emprestimo;
 import module.livro.model.Autor;
 import module.livro.model.Livro;
 
