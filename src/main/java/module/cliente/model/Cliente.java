@@ -1,5 +1,7 @@
 package module.cliente.model;
 
+import module.biblioteca.service.FormatarData;
+
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -17,8 +19,8 @@ public class Cliente {
         this.cpf = cpf;
 
         // Convertendo o tipo LocalDate para o tipo Datesql
-        Date sqldate = Date.valueOf(data);
-        setDataNascimento(sqldate);
+        FormatarData formatar = new FormatarData();
+        dataNascimento = formatar.converterDataSql(data);
     }
 
     public int getId() { return id;}
