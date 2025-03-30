@@ -38,6 +38,6 @@ public class Cliente {
 
     public String dados(){
         return "{Id: " + id + " Nome: " + nome
-                + "Cpf: " + cpf + " Email: " + email + " Data de nascimento: " + dataNascimento.toString() + "}";
+                + " Cpf: " + cpf + " Email: " + email + " Data de nascimento: " + dataNascimento.toString() + "}";
     }
 }

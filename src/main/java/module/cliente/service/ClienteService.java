@@ -25,4 +25,9 @@ public class ClienteService {
         clienteRepository.excluir(id);
     }
 
+    public void pesquisar(int id){
+        ClienteRepository clienteRepository = new ClienteRepository();
+        clienteRepository.pesquisar(id);
+    }
+
 }
