@@ -20,8 +20,9 @@ public class ClienteService {
         repository.atualizar(cliente);
     }
 
-    public void excluir(){
-
+    public void excluir(int id){
+        ClienteRepository clienteRepository = new ClienteRepository();
+        clienteRepository.excluir(id);
     }
 
 }

@@ -52,6 +52,26 @@ public class ClienteRepository {
 
     }
 
+    public void excluir(int id){
 
+        try (Connection conexao = getConexao()) {
+            if (conexao != null) {
+                String sql = "DELETE FROM clientes WHERE id = ?";
+                PreparedStatement stmt = conexao.prepareStatement(sql);
+
+                stmt.setInt(1, id);
+
+                int rows = stmt.executeUpdate();
+                if (rows > 0){
+                    System.out.println("Cliente excluído com sucesso!");
+                } else {
+                    System.out.println("Não existe cliente com esse ID.");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao excluír o cliente: " + e.getMessage());
+        }
+
+    }
 
 }
