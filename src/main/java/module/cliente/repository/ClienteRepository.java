@@ -26,5 +26,32 @@ public class ClienteRepository {
         }
     }
 
+    public void atualizar(Cliente cliente){
+
+        try (Connection conexao = getConexao()) {
+            if (conexao != null) {
+                String sql = "UPDATE clientes SET nome = ?, email = ?, cpf = ?, dataNascimento = ? WHERE id = ?";
+                PreparedStatement stmt = conexao.prepareStatement(sql);
+
+                stmt.setString(1, cliente.getNome());
+                stmt.setString(2, cliente.getEmail());
+                stmt.setString(3, cliente.getCpf());
+                stmt.setDate(4, cliente.getDataNascimento());
+                stmt.setInt(5, cliente.getId());
+
+                int rows = stmt.executeUpdate();
+                if (rows > 0){
+                    System.out.println("Cliente atualizado com sucesso!");
+                } else {
+                    System.out.println("Não existe cliente com esse ID.");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar o cliente: " + e.getMessage());
+        }
+
+    }
+
+
 
 }

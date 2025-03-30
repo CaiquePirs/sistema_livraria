@@ -15,8 +15,9 @@ public class ClienteService {
     }
 
 
-    public void atualizar(){
-
+    public void atualizar(int id, String nome, String email, String cpf, LocalDate data){
+        Cliente cliente = new Cliente(id, nome, email, cpf, data);
+        repository.atualizar(cliente);
     }
 
     public void excluir(){
