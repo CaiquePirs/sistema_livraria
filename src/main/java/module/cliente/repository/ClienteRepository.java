@@ -71,7 +71,8 @@ public class ClienteRepository {
 
     }
 
-    public void pesquisar(int id){
+    public Cliente pesquisar(int id){
+        Cliente cliente = null;
         try(Connection conexao = getConexao()){
             if (conexao != null) {
                 String sql = "SELECT * FROM clientes WHERE id = ?";
@@ -86,8 +87,7 @@ public class ClienteRepository {
                     String cpf = rs.getString("cpf");
                     Date dataNascimento = rs.getDate("dataNascimento");
 
-                    Cliente cliente = new Cliente(clienteId, nome, email, cpf, dataNascimento);
-                    System.out.println(cliente.dados());
+                    cliente = new Cliente(clienteId, nome, email, cpf, dataNascimento);
 
                 } else {
                     System.out.println("Cliente não encontrado");
@@ -97,5 +97,7 @@ public class ClienteRepository {
         } catch (SQLException e){
             System.err.println("Erro ao pesquisar o cliente: " + e.getMessage());
         }
+    return cliente;
     }
+
 }
