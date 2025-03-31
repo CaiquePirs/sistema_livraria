@@ -9,13 +9,13 @@ public class LivroRepository {
     public void cadastrar(Livro livro){
         try(Connection conexao = getConexao()){
             if(conexao != null) {
-                String sql = "INSERT INTO livros(id, titulo, autor, statusLivro, dataCadastro, dataAtualizacao) VALUES(?, ?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO livros(id, titulo, autor, status, dataCadastro, dataAtualizacao) VALUES(?, ?, ?, ?, ?, ?)";
                 PreparedStatement stmt = conexao.prepareStatement(sql);
 
                 stmt.setInt(1, livro.getId());
                 stmt.setString(2, livro.getTitulo());
                 stmt.setString(3, livro.getAutor());
-                stmt.setBoolean(4, livro.getStatus());
+                stmt.setString(4, livro.getStatus());
                 stmt.setDate(5, livro.getDataCadastro());
                 stmt.setDate(6, livro.getDataAtualizacao());
                 stmt.executeUpdate();
@@ -29,12 +29,12 @@ public class LivroRepository {
     public void atualizar(Livro livro){
         try(Connection conexao = getConexao()){
             if(conexao != null) {
-                String sql = "UPDATE livros SET titulo = ?, autor = ?, statusLivro = ?, dataAtualizacao = ? WHERE id = ?";
+                String sql = "UPDATE livros SET titulo = ?, autor = ?, status = ?, dataAtualizacao = ? WHERE id = ?";
                 PreparedStatement stmt = conexao.prepareStatement(sql);
 
                 stmt.setString(1, livro.getTitulo());
                 stmt.setString(2, livro.getAutor());
-                stmt.setBoolean(3, livro.getStatus());
+                stmt.setString(3, livro.getStatus());
                 stmt.setDate(4, livro.getDataAtualizacao());
                 stmt.setInt(5, livro.getId());
 
@@ -65,7 +65,7 @@ public class LivroRepository {
                     int idLivro = rs.getInt("id");
                     String titulo = rs.getString("titulo");
                     String autor = rs.getString("autor");
-                    Boolean status = rs.getBoolean("statusLivro");
+                    String status = rs.getString("status");
                     Date dataCadastro = rs.getDate("dataCadastro");
                     Date dataAtualizacao = rs.getDate("dataAtualizacao");
 

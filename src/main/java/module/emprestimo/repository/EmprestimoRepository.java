@@ -25,7 +25,7 @@ public class EmprestimoRepository {
                 stmt.executeUpdate();
 
                 // Altera o status do livro para indisponível ao ser emprestado
-                String sql1 = "UPDATE livros SET statusLivro = FALSE WHERE id = ? ";
+                String sql1 = "UPDATE livros SET status = Indisponível WHERE id = ? ";
                 PreparedStatement stmt1 = conexao.prepareStatement(sql1);
                 stmt1.setInt(1, emprestimo.getLivro().getId());
                 stmt1.executeUpdate();
@@ -40,6 +40,10 @@ public class EmprestimoRepository {
     }
 
     public void pesquisar(){
+
+    }
+
+    public void devolver(){
 
     }
 

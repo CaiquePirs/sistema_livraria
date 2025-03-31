@@ -14,7 +14,7 @@ public class LivroService {
         repository.cadastrar(livro);
     }
 
-    public void atualizar(int id, String titulo, String autor, Boolean status, Date data){
+    public void atualizar(int id, String titulo, String autor, String status, Date data){
         Livro livro = new Livro(id, titulo, autor, data);
         livro.setStatus(status);
         repository.atualizar(livro);

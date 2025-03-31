@@ -6,7 +6,7 @@ public class Livro {
     private int id;
     private String titulo;
     private String autor;
-    private boolean status;
+    private String status;
     private Date dataCadastro;
     private Date dataAtualizacao;
 
@@ -15,7 +15,7 @@ public class Livro {
         this.titulo = titulo;
         this.autor = autor;
         this.dataCadastro = data;
-        status = true;
+        status = "Disponível";
         setDataAtualizacao(dataCadastro);
     }
 
@@ -54,14 +54,14 @@ public class Livro {
         this.dataCadastro = dataCadastro;
     }
 
-    public boolean getStatus() { return status; }
-    public void setStatus(boolean status) {
+    public String getStatus() { return status; }
+    public void setStatus(String status) {
         this.status = status;
     }
 
     public String dados(){
         return "Id: " + id + " Titulo: " + titulo
-                + " Autor: " + autor + " Disponibilidade " + (status ? " Disponível" : " Indisponível")  + " Data de cadastro: " + dataCadastro.toString()
+                + " Autor: " + autor + " Disponibilidade: " + getStatus() + " Data de cadastro: " + dataCadastro.toString()
                 + " Data de atualização: " + dataAtualizacao.toString();
     }
 
