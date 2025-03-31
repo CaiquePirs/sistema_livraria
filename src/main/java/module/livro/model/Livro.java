@@ -9,7 +9,7 @@ public class Livro {
     private int id;
     private String titulo;
     private String autor;
-    private boolean status = false;
+    private boolean status;
     private Date dataCadastro;
     private Date dataAtualizacao;
 

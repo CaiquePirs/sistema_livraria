@@ -20,6 +20,8 @@ public class LivroService {
     }
 
     public void pesquisar(int id){
+        LivroRepository repository = new LivroRepository();
+        repository.pesquisar(id);
     }
 
     public void excluir(int id){
