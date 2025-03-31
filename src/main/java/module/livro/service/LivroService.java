@@ -25,6 +25,8 @@ public class LivroService {
     }
 
     public void excluir(int id){
+        LivroRepository repository = new LivroRepository();
+        repository.excluir(id);
     }
 
 }

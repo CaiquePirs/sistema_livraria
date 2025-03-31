@@ -86,7 +86,25 @@ public class LivroRepository {
 
     }
 
-    public void excluir(){
+    public void excluir(int id ){
+        try(Connection conexao = getConexao()){
+            if(conexao != null) {
+                String sql = "DELETE FROM livros WHERE id = ?";
+                PreparedStatement stmt = conexao.prepareStatement(sql);
+                stmt.setInt(1, id);
+
+                int rows = stmt.executeUpdate();
+                if(rows > 0){
+                    System.out.println("Livro excluído com sucesso");
+
+                }else {
+                    System.out.println("Livro não encontrado");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao excluir o livro");;
+        }
 
     }
 
