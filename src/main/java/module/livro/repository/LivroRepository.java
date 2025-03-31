@@ -51,7 +51,9 @@ public class LivroRepository {
 
     }
 
-    public void pesquisar(int id ){
+    public Livro pesquisar(int id ){
+        Livro livro = null;
+
         try(Connection conexao = getConexao()){
             if(conexao != null) {
                 String sql = "SELECT * FROM livros WHERE id = ?";
@@ -67,10 +69,9 @@ public class LivroRepository {
                     Date dataCadastro = rs.getDate("dataCadastro");
                     Date dataAtualizacao = rs.getDate("dataAtualizacao");
 
-                    Livro livro = new Livro(idLivro, titulo, autor, dataCadastro);
+                    livro = new Livro(idLivro, titulo, autor, dataCadastro);
                     livro.setStatus(status);
                     livro.setDataAtualizacao(dataAtualizacao);
-                    System.out.println(livro.dados());
 
                 } else {
                     System.out.println("Livro não encontrado");
@@ -80,7 +81,7 @@ public class LivroRepository {
         } catch(SQLException e){
             System.out.println("Erro ao pesquisar o livro: " + e.getMessage());
         }
-
+        return livro;
     }
 
     public void excluir(int id ){
