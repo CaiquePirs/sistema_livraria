@@ -1,9 +1,6 @@
 package module.livro.repository;
-
 import module.livro.model.Livro;
-
 import java.sql.*;
-import java.time.LocalDate;
 
 import static config.ConexaoMYSQL.getConexao;
 
@@ -67,7 +64,7 @@ public class LivroRepository {
                     String titulo = rs.getString("titulo");
                     String autor = rs.getString("autor");
                     Boolean status = rs.getBoolean("statusLivro");
-                    LocalDate dataCadastro = rs.getDate("dataCadastro").toLocalDate();
+                    Date dataCadastro = rs.getDate("dataCadastro");
                     Date dataAtualizacao = rs.getDate("dataAtualizacao");
 
                     Livro livro = new Livro(idLivro, titulo, autor, dataCadastro);

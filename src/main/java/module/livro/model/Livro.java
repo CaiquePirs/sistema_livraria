@@ -1,9 +1,6 @@
 package module.livro.model;
 
-import module.biblioteca.service.FormatarData;
-
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Livro {
     private int id;
@@ -13,15 +10,12 @@ public class Livro {
     private Date dataCadastro;
     private Date dataAtualizacao;
 
-   public Livro(int id, String titulo, String autor, LocalDate data){
+   public Livro(int id, String titulo, String autor, Date data){
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
+        this.dataCadastro = data;
         status = true;
-
-        // Método para converter a data do tipo LocalDate para Date
-        FormatarData formatarData = new FormatarData();
-        dataCadastro = formatarData.converterDataSql(data);
         setDataAtualizacao(dataCadastro);
     }
 

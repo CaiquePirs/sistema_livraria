@@ -1,14 +1,11 @@
 package module.cliente.repository;
 import module.cliente.model.Cliente;
 import java.sql.*;
-import java.time.LocalDate;
-
 import static config.ConexaoMYSQL.getConexao;
 
 public class ClienteRepository {
 
     public void criar(Cliente cliente){
-
         try (Connection conexao = getConexao()) {
             if (conexao != null) {
                 String sql = "INSERT INTO clientes (id, nome, email, cpf, dataNascimento) VALUES (?, ?, ?, ?, ?)";
@@ -29,7 +26,6 @@ public class ClienteRepository {
     }
 
     public void atualizar(Cliente cliente){
-
         try (Connection conexao = getConexao()) {
             if (conexao != null) {
                 String sql = "UPDATE clientes SET nome = ?, email = ?, cpf = ?, dataNascimento = ? WHERE id = ?";
@@ -55,7 +51,6 @@ public class ClienteRepository {
     }
 
     public void excluir(int id){
-
         try (Connection conexao = getConexao()) {
             if (conexao != null) {
                 String sql = "DELETE FROM clientes WHERE id = ?";
@@ -78,7 +73,6 @@ public class ClienteRepository {
 
     public void pesquisar(int id){
         try(Connection conexao = getConexao()){
-
             if (conexao != null) {
                 String sql = "SELECT * FROM clientes WHERE id = ?";
                 PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -90,9 +84,9 @@ public class ClienteRepository {
                     String nome = rs.getString("nome");
                     String email = rs.getString("email");
                     String cpf = rs.getString("cpf");
-                    LocalDate dataNascimento = rs.getDate("dataNascimento").toLocalDate();
-                     Cliente cliente = new Cliente(clienteId, nome, email, cpf, dataNascimento);
+                    Date dataNascimento = rs.getDate("dataNascimento");
 
+                    Cliente cliente = new Cliente(clienteId, nome, email, cpf, dataNascimento);
                     System.out.println(cliente.dados());
 
                 } else {

@@ -1,9 +1,5 @@
 package module.cliente.model;
-
-import module.biblioteca.service.FormatarData;
-
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Cliente {
     private int id;
@@ -12,15 +8,12 @@ public class Cliente {
     private String cpf;
     private Date dataNascimento;
 
-    public Cliente(int id, String nome, String email, String cpf, LocalDate data){
+    public Cliente(int id, String nome, String email, String cpf, Date data){
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-
-        // Convertendo o tipo LocalDate para o tipo Datesql
-        FormatarData formatar = new FormatarData();
-        dataNascimento = formatar.converterDataSql(data);
+        this.dataNascimento = data;
     }
 
     public int getId() { return id;}
