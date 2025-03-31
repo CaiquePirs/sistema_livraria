@@ -49,7 +49,7 @@ public class LivroRepository {
                 }
             }
         } catch (SQLException e){
-            System.out.println("Erro ao atualizar o livro");
+            System.out.println("Erro ao atualizar o livro: " + e.getMessage());
         }
 
     }
@@ -81,7 +81,7 @@ public class LivroRepository {
             }
 
         } catch(SQLException e){
-            System.out.println("Erro ao pesquisar o livro");
+            System.out.println("Erro ao pesquisar o livro: " + e.getMessage());
         }
 
     }
@@ -103,7 +103,7 @@ public class LivroRepository {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir o livro");;
+            System.out.println("Erro ao excluir o livro: " + e.getMessage());;
         }
 
     }
