@@ -2,6 +2,7 @@ package module.livro.service;
 
 import module.livro.model.Livro;
 import module.livro.repository.LivroRepository;
+
 import java.time.LocalDate;
 
 public class LivroService {
@@ -12,7 +13,10 @@ public class LivroService {
         repository.cadastrar(livro);
     }
 
-    public void atualizar(){
+    public void atualizar(int id, String titulo, String autor, Boolean status, LocalDate data){
+        Livro livro = new Livro(id, titulo, autor, data);
+        livro.setStatus(status);
+        repository.atualizar(livro);
     }
 
     public void pesquisar(int id){

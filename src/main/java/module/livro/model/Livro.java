@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class Livro {
-
     private int id;
     private String titulo;
     private String autor;
@@ -61,14 +60,12 @@ public class Livro {
         this.dataCadastro = dataCadastro;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
+    public boolean getStatus() { return status; }
     public void setStatus(boolean status) {
         this.status = status;
     }
 
-    private String dados(){
+    public String dados(){
         return "Id: " + id + " Titulo: " + titulo
                 + " Autor: " + autor + " Disponibilidade " + (status ? " Disponível" : " Indisponível")  + " Data de cadastro: " + dataCadastro.toString()
                 + " Data de atualização: " + dataAtualizacao.toString();

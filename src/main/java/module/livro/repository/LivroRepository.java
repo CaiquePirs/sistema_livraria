@@ -29,7 +29,27 @@ public class LivroRepository {
         }
     }
 
-    public void atualizar(){
+    public void atualizar(Livro livro){
+        try(Connection conexao = getConexao()){
+            String sql = "UPDATE livros SET titulo = ?, autor = ?, statusLivro = ?, dataAtualizacao = ? WHERE id = ?";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            stmt.setString(1, livro.getTitulo());
+            stmt.setString(2, livro.getAutor());
+            stmt.setBoolean(3, livro.getStatus());
+            stmt.setDate(4, livro.getDataAtualizacao());
+            stmt.setInt(5, livro.getId());
+
+            int rows = stmt.executeUpdate();
+            if (rows > 0){
+                System.out.println("Livro atualizado com sucesso");
+            } else {
+                System.out.println("Id do Livro não encontrado");
+            }
+
+        } catch (SQLException e){
+            System.out.println("Erro ao atualizar o livro");
+        }
 
     }
 
