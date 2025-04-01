@@ -28,8 +28,9 @@ public class EmprestimoService {
         repository.criar(emprestimo);
     }
 
-    public void pesquisar(){
-
+    public void pesquisar(int id ){
+        EmprestimoRepository repository = new EmprestimoRepository();
+        repository.pesquisar(id);
     }
 
     public void devolver(){
