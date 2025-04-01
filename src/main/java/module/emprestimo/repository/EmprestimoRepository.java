@@ -8,6 +8,7 @@ import module.livro.model.Livro;
 import module.livro.service.LivroService;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 import static config.ConexaoMYSQL.getConexao;
 
@@ -87,13 +88,20 @@ public class EmprestimoRepository {
     public void devolver(int id){
         try(Connection conexao = getConexao()){
             if(conexao != null){
-                String sql = "UPDATE emprestimos SET status = 'Devolvido' WHERE id = ? ";
+                // Data em que o empréstimo foi devolvido
+                LocalDate data = LocalDate.now();
+                Date data_atual = Date.valueOf(data);
+
+                String sql = "UPDATE emprestimos SET status = 'Devolvido', dataDevolucao = ? WHERE id = ?";
                 PreparedStatement stmt = conexao.prepareStatement(sql);
+                stmt.setDate(1, data_atual);
+                stmt.setInt(2, id);
 
                 // Pesquisa o status do empréstimo
                 Emprestimo emprestimo = null;
                 EmprestimoService service = new EmprestimoService();
                 emprestimo = service.pesquisar(id);
+
 
                 // Valida se o empréstimo do livro já foi devolvido
                 if(emprestimo.getStatus().equals("Devolvido")){
@@ -117,7 +125,7 @@ public class EmprestimoRepository {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao devolver o empréstimo do livro");;
+            System.out.println("Erro ao devolver o empréstimo do livro: " + e.getMessage());;
         }
     }
 
