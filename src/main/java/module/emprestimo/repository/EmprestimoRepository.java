@@ -134,6 +134,7 @@ public class EmprestimoRepository {
             if(conexao != null){
                String sql = "DELETE FROM emprestimos WHERE id = ?";
                PreparedStatement stmt = conexao.prepareStatement(sql);
+               stmt.setInt(1, id);
 
                int rows = stmt.executeUpdate();
                if(rows > 0){
@@ -144,7 +145,7 @@ public class EmprestimoRepository {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao tentar excluir o empréstimo");
+            System.out.println("Erro ao tentar excluir o empréstimo: " + e.getMessage());
         }
     }
 }
