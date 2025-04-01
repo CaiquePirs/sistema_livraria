@@ -12,3 +12,5 @@ target/
 *.iml
 *.ipr
 /src/main/resources/database.properties
+.idea/
+shelf/
