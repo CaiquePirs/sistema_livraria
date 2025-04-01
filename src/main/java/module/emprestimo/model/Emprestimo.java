@@ -35,10 +35,10 @@ public class Emprestimo {
     public void setStatus(String status) { this.status = status; }
 
     public String dados(){
-        return "Id: " + id + " Nome do cliente: " + cliente.getNome() + " Cpf do cliente: " + cliente.getCpf()
+        return "{ Id: " + id + " Cliente: " + cliente.getNome() + " Cpf: " + cliente.getCpf()
                 + " Email: " + cliente.getEmail()
                 + " Livro: " + livro.getTitulo() + " Data do empréstimo: " + dataEmprestimo.toString()
-                + " Status: " + getStatus();
+                + " Status: " + getStatus() + " }";
     }
 
 }
