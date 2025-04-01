@@ -7,6 +7,7 @@ import module.emprestimo.repository.EmprestimoRepository;
 import module.livro.model.Livro;
 import module.livro.service.LivroService;
 
+import java.sql.Connection;
 import java.sql.Date;
 
 public class EmprestimoService {
@@ -45,8 +46,9 @@ public class EmprestimoService {
         repository.devolver(id);
     }
 
-    public void excluir(){
-
+    public void excluir(int id){
+        EmprestimoRepository repository = new EmprestimoRepository();
+        repository.excluir(id);
     }
 
 }

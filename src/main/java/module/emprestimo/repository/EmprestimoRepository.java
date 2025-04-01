@@ -119,7 +119,22 @@ public class EmprestimoRepository {
         }
     }
 
-    public void excluir(){
+    public void excluir(int id){
+        try(Connection conexao = getConexao()){
+            if(conexao != null){
+               String sql = "DELETE FROM emprestimos WHERE id = ?";
+               PreparedStatement stmt = conexao.prepareStatement(sql);
 
+               int rows = stmt.executeUpdate();
+               if(rows > 0){
+                   System.out.println("Empréstimo excluído com sucesso");
+               } else {
+                   System.out.println("Id do empréstimo não encontrado");
+               }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao tentar excluir o empréstimo");
+        }
     }
 }
