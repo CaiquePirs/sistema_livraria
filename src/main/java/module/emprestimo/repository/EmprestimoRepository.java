@@ -3,6 +3,7 @@ package module.emprestimo.repository;
 import module.cliente.model.Cliente;
 import module.cliente.service.ClienteService;
 import module.emprestimo.model.Emprestimo;
+import module.emprestimo.service.EmprestimoService;
 import module.livro.model.Livro;
 import module.livro.service.LivroService;
 
@@ -41,7 +42,9 @@ public class EmprestimoRepository {
 
     }
 
-    public void pesquisar(int id){
+    public Emprestimo pesquisar(int id){
+        Emprestimo emprestimo = null;
+
         try(Connection conexao = getConexao()){
             if(conexao != null){
                 String sql = "SELECT * FROM emprestimos WHERE id = ?";
@@ -54,7 +57,6 @@ public class EmprestimoRepository {
                     int id_livro = rs.getInt("idLivro");
                     int id_cliente = rs.getInt("idCliente");
                     Date data_emprestimo = rs.getDate("dataEmprestimo");
-                    String status = rs.getString("status");
 
                     // Pesquisa o cliente no banco de dados através do id_cliente e retorna os dados do Cliente
                     Cliente cliente = null;
@@ -66,9 +68,7 @@ public class EmprestimoRepository {
                     LivroService livroService = new LivroService();
                     livro = livroService.pesquisar(id_livro);
 
-                    Emprestimo emprestimo = new Emprestimo(id_emprestimo, data_emprestimo, cliente, livro);
-                    emprestimo.setStatus(status);
-                    System.out.println(emprestimo.dados());
+                    emprestimo = new Emprestimo(id_emprestimo, data_emprestimo, cliente, livro);
 
                 } else {
                     System.out.println("Id do empréstimo não encontrado");
@@ -79,10 +79,44 @@ public class EmprestimoRepository {
         }catch(SQLException e){
             System.out.println("Erro ao consultar o empréstimo: " + e.getMessage());
         }
+        return emprestimo;
     }
 
-    public void devolver(){
+    public void devolver(int id){
+        try(Connection conexao = getConexao()){
+            if(conexao != null){
+                String sql = "UPDATE emprestimos SET status = 'Devolvido' WHERE id = ? ";
+                PreparedStatement stmt = conexao.prepareStatement(sql);
 
+                // Pesquisa o status do empréstimo
+                Emprestimo emprestimo = null;
+                EmprestimoService service = new EmprestimoService();
+                emprestimo = service.pesquisar(id);
+
+                // Valida se o empréstimo do livro já foi devolvido
+                if(emprestimo.getStatus().equals("Devolvido")){
+                    System.out.println("O empréstimo do livro já foi devolvido");
+
+                }else{
+                    int rows = stmt.executeUpdate();
+                    if(rows > 0){
+
+                        // Altera o status do livro para Disponível ao ser devolvido
+                        String sql1 = "UPDATE livros SET status = 'Disponível' WHERE id = ? ";
+                        PreparedStatement stmt1 = conexao.prepareStatement(sql1);
+                        stmt1.setInt(1, emprestimo.getLivro().getId());
+                        stmt1.executeUpdate();
+
+                        System.out.println("Livro devolvido com sucesso!");
+                    } else {
+                        System.out.println("Empréstimo não encontrado");
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao devolver o empréstimo do livro");;
+        }
     }
 
     public void excluir(){

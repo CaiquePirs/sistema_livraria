@@ -35,13 +35,14 @@ public class EmprestimoService {
 
     }
 
-    public void pesquisar(int id ){
+    public Emprestimo pesquisar(int id ){
         EmprestimoRepository repository = new EmprestimoRepository();
-        repository.pesquisar(id);
+        return repository.pesquisar(id);
     }
 
-    public void devolver(){
-
+    public void devolver(int id){
+        EmprestimoRepository repository = new EmprestimoRepository();
+        repository.devolver(id);
     }
 
     public void excluir(){
