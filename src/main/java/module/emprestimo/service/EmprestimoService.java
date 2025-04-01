@@ -22,10 +22,17 @@ public class EmprestimoService {
         LivroService livroService = new LivroService();
         livro = livroService.pesquisar(idLivro);
 
-        // Realiza o empréstimo do livro
-        Emprestimo emprestimo = new Emprestimo(id, dataEmprestimo, cliente, livro);
-        EmprestimoRepository repository = new EmprestimoRepository();
-        repository.criar(emprestimo);
+        // Valida se o livro já está emprestado
+        if(livro.getStatus().equals("Indisponível")){
+            System.out.println("Esse livro já foi emprestado");
+
+        } else {
+            // Realiza o empréstimo do livro
+            Emprestimo emprestimo = new Emprestimo(id, dataEmprestimo, cliente, livro);
+            EmprestimoRepository repository = new EmprestimoRepository();
+            repository.criar(emprestimo);
+        }
+
     }
 
     public void pesquisar(int id ){
