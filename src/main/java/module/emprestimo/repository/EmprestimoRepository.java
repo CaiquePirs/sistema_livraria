@@ -48,7 +48,7 @@ public class EmprestimoRepository {
         try(Connection conexao = getConexao()){
             if(conexao != null){
                 String sql = "SELECT * FROM emprestimos WHERE id = ?";
-                PreparedStatement stmt = conexao.prepareCall(sql);
+                PreparedStatement stmt = conexao.prepareStatement(sql);
                 stmt.setInt(1, id);
 
                 ResultSet rs = stmt.executeQuery();
@@ -57,6 +57,7 @@ public class EmprestimoRepository {
                     int id_livro = rs.getInt("idLivro");
                     int id_cliente = rs.getInt("idCliente");
                     Date data_emprestimo = rs.getDate("dataEmprestimo");
+                    String status = rs.getString("status");
 
                     // Pesquisa o cliente no banco de dados através do id_cliente e retorna os dados do Cliente
                     Cliente cliente = null;
@@ -69,6 +70,7 @@ public class EmprestimoRepository {
                     livro = livroService.pesquisar(id_livro);
 
                     emprestimo = new Emprestimo(id_emprestimo, data_emprestimo, cliente, livro);
+                    emprestimo.setStatus(status);
 
                 } else {
                     System.out.println("Id do empréstimo não encontrado");
