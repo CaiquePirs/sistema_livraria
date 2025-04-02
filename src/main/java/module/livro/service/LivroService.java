@@ -14,8 +14,12 @@ public class LivroService {
         repository.cadastrar(livro);
     }
 
-    public void atualizar(int id, String titulo, String autor, String status, Date data){
-        Livro livro = new Livro(id, titulo, autor, data);
+    public void atualizar(int id, String titulo, String autor, String status){
+        // Pega a Data "atual" que o livro esta sendo atualizado
+        LocalDate data = LocalDate.now();
+        Date data_atualizacao = Date.valueOf(data);
+
+        Livro livro = new Livro(id, titulo, autor, data_atualizacao);
         livro.setStatus(status);
         repository.atualizar(livro);
     }
