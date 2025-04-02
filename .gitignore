@@ -8,9 +8,9 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/shelf
+.idea/
 *.iws
 *.iml
 *.ipr
 /src/main/resources/database.properties
-.idea/
-shelf/
