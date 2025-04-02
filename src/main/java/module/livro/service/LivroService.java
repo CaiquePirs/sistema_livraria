@@ -15,7 +15,7 @@ public class LivroService {
     }
 
     public void atualizar(int id, String titulo, String autor, String status){
-        // Pega a Data "atual" que o livro esta sendo atualizado
+        
         LocalDate data = LocalDate.now();
         Date data_atualizacao = Date.valueOf(data);
 
