@@ -9,8 +9,7 @@ public class Cliente {
     private String cpf;
     private Date dataNascimento;
 
-    public Cliente(int id, String nome, String email, String cpf, Date data){
-        this.id = id;
+    public Cliente(String nome, String email, String cpf, Date data){
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -32,7 +31,7 @@ public class Cliente {
     public String getEmail() { return email;}
     public void setEmail(String email) { this.email = email; }
 
-    // Método para exibir a data formatada para o padrão BR
+    // Formata a data de nascimento do cliente para o formato BR
     public String getDataNascimentoFormatada() {
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         return formatar.format(this.dataNascimento);

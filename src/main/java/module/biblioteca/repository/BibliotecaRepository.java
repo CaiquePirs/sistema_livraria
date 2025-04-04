@@ -20,15 +20,24 @@ public class BibliotecaRepository {
             if(conexao != null){
                 String sql = "SELECT * FROM clientes ORDER BY id ASC";
                 Statement stmt = conexao.createStatement();
+
+                // Executa a consulta de todos os clientes no banco de dados
                 ResultSet rs = stmt.executeQuery(sql);
                 while(rs.next()){
-                       clientes.add(new Cliente(
-                               rs.getInt("id"),
-                               rs.getString("nome"),
-                               rs.getString("email"),
-                               rs.getString("cpf"),
-                               rs.getDate("dataNascimento")
-                               ));
+
+                    // Obtém os dados obtidos dos clientes
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    String email =  rs.getString("email");
+                    String cpf = rs.getString("cpf");
+                    Date dataNascimento = rs.getDate("dataNascimento");
+
+                    // Cria um objeto do tipo Cliente com os dados obtidos
+                    Cliente cliente = new Cliente(nome, email, cpf, dataNascimento);
+                    cliente.setId(id);
+
+                    // Adiciona cada cliente criado na lista de clientes
+                    clientes.add(cliente);
                 }
             }
 
@@ -45,20 +54,26 @@ public class BibliotecaRepository {
             String sql = "SELECT * FROM livros ORDER BY id ASC";
             Statement stmt = conexao.createStatement();
 
+            // Executa a consulta dos livros no banco de dados
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
+
+                // Obtém os dados obtidos dos livros
                 int id = rs.getInt("id");
                 String titulo = rs.getString("titulo");
                 String autor = rs.getString("autor");
                 String status = rs.getString("status");
                 Date dataCadastro = rs.getDate("dataCadastro");
                 Date dataAtualizacao = rs.getDate("dataAtualizacao");
-                Livro livro = new Livro(titulo, autor);
 
+                // Cria um objeto do tipo Livro com os dados obtidos
+                Livro livro = new Livro(titulo, autor);
                 livro.setDataAtualizacao(dataAtualizacao);
                 livro.setDataCadastro(dataCadastro);
                 livro.setId(id);
                 livro.setStatus(status);
+
+                // Adiciona cada livro criado na lista de livros
                 livros.add(livro);
             }
 
@@ -76,10 +91,11 @@ public class BibliotecaRepository {
                 String sql = "SELECT * FROM emprestimos ORDER BY id ASC";
                 Statement stmt = conexao.createStatement();
 
+                // Executa a consulta dos empréstimos no banco de dados
                 ResultSet rs = stmt.executeQuery(sql);
                 while(rs.next()) {
-                 
-                  // Armazena os valores dos registros de cada coluna da tabela `emprestimos`
+
+                 // Obtém os dados obtidos dos empréstimos
                  int id_emprestimo = rs.getInt("id");
                  int id_cliente = rs.getInt("idCliente");
                  int id_livro = rs.getInt("idLivro");
@@ -100,7 +116,7 @@ public class BibliotecaRepository {
                  emprestimo.setDataDevolucao(data_devolucao);
                  emprestimo.setStatus(status);
 
-                 // Adiciona cada um dos emprestimo na lista de emprestimos 
+                 // Adiciona cada um dos empréstimo na lista de empréstimos
                  emprestimos.add(emprestimo);
                 }
             }

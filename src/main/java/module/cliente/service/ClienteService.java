@@ -8,13 +8,14 @@ import java.sql.Date;
 public class ClienteService {
     private ClienteRepository repository = new ClienteRepository();
 
-    public void Cadastrar(int id, String nome, String email, String cpf, Date data){
-        Cliente cliente = new Cliente(id, nome, email, cpf, data);
+    public void Cadastrar(String nome, String email, String cpf, Date dataNascimento){
+        Cliente cliente = new Cliente(nome, email, cpf, dataNascimento);
         repository.criar(cliente);
     }
 
-    public void atualizar(int id, String nome, String email, String cpf, Date data){
-        Cliente cliente = new Cliente(id, nome, email, cpf, data);
+    public void atualizar(int id, String nome, String email, String cpf, Date dataNascimento){
+        Cliente cliente = new Cliente(nome, email, cpf, dataNascimento);
+        cliente.setId(id);
         repository.atualizar(cliente);
     }
 
