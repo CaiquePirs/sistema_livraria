@@ -1,5 +1,6 @@
 package module.cliente.model;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Cliente {
     private int id;
@@ -31,8 +32,14 @@ public class Cliente {
     public String getEmail() { return email;}
     public void setEmail(String email) { this.email = email; }
 
+    // Método para exibir a data formatada para o padrão BR
+    public String getDataNascimentoFormatada() {
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+        return formatar.format(this.dataNascimento);
+    }
+
     public String dados(){
-        return "{Id: " + id + " Nome: " + nome
-                + " Cpf: " + cpf + " Email: " + email + " Data de nascimento: " + dataNascimento.toString() + "}";
+        return "{Id: " + id + ", Nome: " + nome
+                + ", Cpf: " + cpf + ", Email: " + email + ", Data de nascimento: " + getDataNascimentoFormatada() + "}";
     }
 }
