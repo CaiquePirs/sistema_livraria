@@ -1,6 +1,7 @@
 package module.livro.model;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Livro {
     private int id;
@@ -59,10 +60,21 @@ public class Livro {
         this.status = status;
     }
 
+    // Método para exibir a data formatada para o padrão BR
+    public String getDataCadastroFormatada() {
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+        return formatar.format(this.dataCadastro);
+    }
+
+    public String getDataAtualizacaoFormatada() {
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+        return formatar.format(this.dataAtualizacao);
+    }
+
     public String dados(){
-        return "Id: " + id + " Titulo: " + titulo
-                + " Autor: " + autor + " Disponibilidade: " + getStatus() + " Data de cadastro: " + dataCadastro.toString()
-                + " Data de atualização: " + dataAtualizacao.toString();
+        return "{Id: " + id + ", Titulo: " + titulo
+                + ", Autor: " + autor + ", Disponibilidade: " + getStatus() + ", Data de cadastro: " + getDataCadastroFormatada()
+                + ", Data de atualização: " + getDataAtualizacaoFormatada() + "}";
     }
 
 
