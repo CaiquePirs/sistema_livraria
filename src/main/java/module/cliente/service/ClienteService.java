@@ -1,11 +1,9 @@
 package module.cliente.service;
 
-import module.biblioteca.service.FormatarData;
 import module.cliente.model.Cliente;
 import module.cliente.repository.ClienteRepository;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class ClienteService {
     private ClienteRepository repository = new ClienteRepository();
