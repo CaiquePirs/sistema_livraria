@@ -1,9 +1,9 @@
 package module.biblioteca.service;
 import module.biblioteca.repository.BibliotecaRepository;
 import module.cliente.model.Cliente;
+import module.emprestimo.model.Emprestimo;
 import module.livro.model.Livro;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BibliotecaService{
@@ -32,7 +32,15 @@ public class BibliotecaService{
         return livros;
     }
 
-    public void listarEmprestimos(){
+    public List<Emprestimo> listarEmprestimos(){
+       // Recebe a lista de empréstimos vinda do banco de dados
+        List<Emprestimo> emprestimos = repository.buscarEmprestimos();
 
+        // Valida se a lista de empréstimos está vazia
+        if(emprestimos.isEmpty()){
+            System.out.println("Não existe empréstimos cadastrados");
+        }
+
+        return emprestimos;
     }
 }
