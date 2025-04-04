@@ -17,15 +17,14 @@ public class EmprestimoRepository {
     public void criar(Emprestimo emprestimo){
         try(Connection conexao = getConexao()){
             if(conexao != null){
-                String sql = "INSERT INTO emprestimos(id, dataEmprestimo, idCliente, idLivro, status) VALUES(?, ?, ?, ?, ?)";
+                String sql = "INSERT INTO emprestimos(dataEmprestimo, idCliente, idLivro, status) VALUES(?, ?, ?, ?)";
                 PreparedStatement stmt = conexao.prepareStatement(sql);
 
-                // Cria o empréstimo no banco de dados
-                stmt.setInt(1, emprestimo.getId());
-                stmt.setDate(2, emprestimo.getDataEmprestimo());
-                stmt.setInt(3, emprestimo.getCliente().getId());
-                stmt.setInt(4, emprestimo.getLivro().getId());
-                stmt.setString(5, "Ativo");
+                // Obtém as informações do empréstimo e executa a criação no banco de dados
+                stmt.setDate(1, emprestimo.getDataEmprestimo());
+                stmt.setInt(2, emprestimo.getCliente().getId());
+                stmt.setInt(3, emprestimo.getLivro().getId());
+                stmt.setString(4, "Ativo");
                 stmt.executeUpdate();
 
                 // Altera o status do livro para indisponível ao ser emprestado
@@ -52,13 +51,18 @@ public class EmprestimoRepository {
                 PreparedStatement stmt = conexao.prepareStatement(sql);
                 stmt.setInt(1, id);
 
+                // Consulta o empréstimo pelo ID
                 ResultSet rs = stmt.executeQuery();
                 if(rs.next()){
+
+                    // Obtém os dados do empréstimo
                     int id_emprestimo = rs.getInt("id");
                     int id_livro = rs.getInt("idLivro");
                     int id_cliente = rs.getInt("idCliente");
-                    Date data_emprestimo = rs.getDate("dataEmprestimo");
                     String status = rs.getString("status");
+                    Date data_emprestimo = rs.getDate("dataEmprestimo");
+                    Date data_devolucao = rs.getDate("dataDevolucao");
+
 
                     // Pesquisa o cliente no banco de dados através do id_cliente e retorna os dados do Cliente
                     Cliente cliente = null;
@@ -70,8 +74,10 @@ public class EmprestimoRepository {
                     LivroService livroService = new LivroService();
                     livro = livroService.pesquisar(id_livro);
 
-                    emprestimo = new Emprestimo(id_emprestimo, data_emprestimo, cliente, livro);
+                    emprestimo = new Emprestimo(data_emprestimo, cliente, livro);
+                    emprestimo.setId(id_emprestimo);
                     emprestimo.setStatus(status);
+                    emprestimo.setDataDevolucao(data_devolucao);
 
                 } else {
                     System.out.println("Id do empréstimo não encontrado");
@@ -88,7 +94,7 @@ public class EmprestimoRepository {
     public void devolver(int id){
         try(Connection conexao = getConexao()){
             if(conexao != null){
-                // Data em que o empréstimo foi devolvido
+                // Data em que o empréstimo está sendo devolvido
                 LocalDate data = LocalDate.now();
                 Date data_atual = Date.valueOf(data);
 
@@ -102,12 +108,12 @@ public class EmprestimoRepository {
                 EmprestimoService service = new EmprestimoService();
                 emprestimo = service.pesquisar(id);
 
-
                 // Valida se o empréstimo do livro já foi devolvido
                 if(emprestimo.getStatus().equals("Devolvido")){
                     System.out.println("O empréstimo do livro já foi devolvido");
 
                 }else{
+                    // Executa a atualização no banco de dados
                     int rows = stmt.executeUpdate();
                     if(rows > 0){
 

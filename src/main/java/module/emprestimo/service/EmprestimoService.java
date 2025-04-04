@@ -7,18 +7,17 @@ import module.emprestimo.repository.EmprestimoRepository;
 import module.livro.model.Livro;
 import module.livro.service.LivroService;
 
-import java.sql.Connection;
 import java.sql.Date;
 
 public class EmprestimoService {
-    public void criar(int id, Date dataEmprestimo, int idCliente, int idLivro){
+    public void criar(Date dataEmprestimo, int idCliente, int idLivro){
 
-        // Consulta o id do cliente no banco de dados e retorna o objeto Cliente
+        // Consulta o id do cliente no banco de dados e retorna o Cliente
         Cliente cliente;
         ClienteService clienteService = new ClienteService();
         cliente = clienteService.pesquisar(idCliente);
 
-        // Consulta o id do livro no banco de dados e retorna o objeto Livro
+        // Consulta o id do livro no banco de dados e retorna o Livro
         Livro livro;
         LivroService livroService = new LivroService();
         livro = livroService.pesquisar(idLivro);
@@ -29,7 +28,7 @@ public class EmprestimoService {
 
         } else {
             // Realiza o empréstimo do livro
-            Emprestimo emprestimo = new Emprestimo(id, dataEmprestimo, cliente, livro);
+            Emprestimo emprestimo = new Emprestimo(dataEmprestimo, cliente, livro);
             EmprestimoRepository repository = new EmprestimoRepository();
             repository.criar(emprestimo);
         }

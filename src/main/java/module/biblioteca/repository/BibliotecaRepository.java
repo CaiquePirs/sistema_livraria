@@ -112,11 +112,12 @@ public class BibliotecaRepository {
                  Livro livro = livroService.pesquisar(id_livro);
 
                  // Cria um objeto do tipo 'Empréstimo' com as informações obtidas
-                 Emprestimo emprestimo = new Emprestimo(id_emprestimo, data_emprestimo, cliente, livro);
+                 Emprestimo emprestimo = new Emprestimo(data_emprestimo, cliente, livro);
                  emprestimo.setDataDevolucao(data_devolucao);
                  emprestimo.setStatus(status);
+                 emprestimo.setId(id_emprestimo);
 
-                 // Adiciona cada um dos empréstimo na lista de empréstimos
+                 // Adiciona cada empréstimo na lista de empréstimos
                  emprestimos.add(emprestimo);
                 }
             }

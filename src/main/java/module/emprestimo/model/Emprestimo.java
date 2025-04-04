@@ -14,8 +14,7 @@ public class Emprestimo {
     private Cliente cliente;
     private String status;
 
-    public Emprestimo(int id, Date dataEmprestimo, Cliente cliente, Livro livro){
-        this.id = id;
+    public Emprestimo(Date dataEmprestimo, Cliente cliente, Livro livro){
         this.dataEmprestimo = dataEmprestimo;
         this.cliente = cliente;
         this.livro = livro;
@@ -45,12 +44,15 @@ public class Emprestimo {
         return formatar.format(this.dataEmprestimo);
     }
 
-    // Formata a data de devolução do empréstimo para o formato BR
+    // Formata a data e valida se está null (vazia)
     public String getDataDevolucaoFormatada() {
-        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
-        return formatar.format(this.dataDevolucao);
+        if(dataDevolucao == null || dataDevolucao.equals("")){
+            return "Não devolvido";
+        } else {
+            SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+            return formatar.format(this.dataDevolucao);
+        }
     }
-
 
     public String dados() {
         return "{" +
