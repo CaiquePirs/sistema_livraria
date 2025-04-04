@@ -1,5 +1,6 @@
 package module.biblioteca.repository;
 import module.cliente.model.Cliente;
+import module.livro.model.Livro;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,8 +35,32 @@ public class BibliotecaRepository {
        return clientes;
     }
 
-    public void listarLivros(){
+    public List<Livro> buscarLivros(){
+        List<Livro> livros = new ArrayList<>();
 
+        try(Connection conexao = getConexao()){
+            String sql = "SELECT * FROM livros ORDER BY id ASC";
+            Statement stmt = conexao.createStatement();
+
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String titulo = rs.getString("titulo");
+                String autor = rs.getString("autor");
+                String status = rs.getString("status");
+                Date dataCadastro = rs.getDate("dataCadastro");
+                Date dataAtualizacao = rs.getDate("dataAtualizacao");
+                Livro livro = new Livro(id, titulo, autor, dataCadastro);
+
+                livro.setDataAtualizacao(dataAtualizacao);
+                livro.setStatus(status);
+                livros.add(livro);
+            }
+
+        }catch (SQLException e){
+            System.out.println("Erro ao listar os livros: " + e.getMessage());
+        }
+        return livros;
     }
 
     public void listarEmprestimos(){
