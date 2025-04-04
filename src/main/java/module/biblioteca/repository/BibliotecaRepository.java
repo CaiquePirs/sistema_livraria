@@ -53,9 +53,11 @@ public class BibliotecaRepository {
                 String status = rs.getString("status");
                 Date dataCadastro = rs.getDate("dataCadastro");
                 Date dataAtualizacao = rs.getDate("dataAtualizacao");
-                Livro livro = new Livro(id, titulo, autor, dataCadastro);
+                Livro livro = new Livro(titulo, autor);
 
                 livro.setDataAtualizacao(dataAtualizacao);
+                livro.setDataCadastro(dataCadastro);
+                livro.setId(id);
                 livro.setStatus(status);
                 livros.add(livro);
             }

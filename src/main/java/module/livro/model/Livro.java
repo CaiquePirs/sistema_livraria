@@ -11,13 +11,10 @@ public class Livro {
     private Date dataCadastro;
     private Date dataAtualizacao;
 
-   public Livro(int id, String titulo, String autor, Date data){
-        this.id = id;
+   public Livro(String titulo, String autor){
         this.titulo = titulo;
         this.autor = autor;
-        this.dataCadastro = data;
         status = "Disponível";
-        setDataAtualizacao(dataCadastro);
     }
 
     public String getTitulo() {
@@ -60,12 +57,13 @@ public class Livro {
         this.status = status;
     }
 
-    // Método para exibir a data formatada para o padrão BR
+    // Formata a data de cadastro do livro para o padrão BR
     public String getDataCadastroFormatada() {
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         return formatar.format(this.dataCadastro);
     }
 
+    // Formata a data de atualização livro para o padrão BR
     public String getDataAtualizacaoFormatada() {
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         return formatar.format(this.dataAtualizacao);

@@ -15,7 +15,7 @@ public class BibliotecaService{
 
         // Valida se a lista de clientes está vazia
         if(clientes.isEmpty()){
-            throw new RuntimeException("Não existe clientes cadastrados na biblioteca.");
+            System.out.println("Não existe clientes cadastrados na biblioteca.");
         }
         return clientes;
     }
@@ -26,7 +26,7 @@ public class BibliotecaService{
 
         // Valida se a lista de livros está vazia
         if(livros.isEmpty()){
-            throw new RuntimeException("Não existe livros cadastrados na biblioteca");
+            System.out.println("Não existe livros cadastrados na biblioteca.");
         }
 
         return livros;
@@ -38,7 +38,7 @@ public class BibliotecaService{
 
         // Valida se a lista de empréstimos está vazia
         if(emprestimos.isEmpty()){
-            System.out.println("Não existe empréstimos cadastrados");
+            System.out.println("Não existe empréstimos cadastrados na biblioteca.");
         }
 
         return emprestimos;
