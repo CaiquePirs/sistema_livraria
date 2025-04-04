@@ -4,10 +4,12 @@ import module.cliente.model.Cliente;
 import module.livro.model.Livro;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Emprestimo {
     private int id;
     private Date dataEmprestimo;
+    private Date dataDevolucao;
     private Livro livro;
     private Cliente cliente;
     private String status;
@@ -34,11 +36,31 @@ public class Emprestimo {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public String dados(){
-        return "{ Id: " + id + " Cliente: " + cliente.getNome() + " Cpf: " + cliente.getCpf()
-                + " Email: " + cliente.getEmail()
-                + " Livro: " + livro.getTitulo() + " Data do empréstimo: " + dataEmprestimo.toString()
-                + " Status: " + getStatus() + " }";
+    public Date getDataDevolucao() { return dataDevolucao; }
+    public void setDataDevolucao(Date dataDevolucao) { this.dataDevolucao = dataDevolucao; }
+
+    // Método para exibir a data formatada para o padrão BR
+    public String getDataEmprestimoFormormatada() {
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+        return formatar.format(this.dataEmprestimo);
     }
 
+    // Formata a data de devolução do empréstimo para o formato BR
+    public String getDataDevolucaoFormatada() {
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+        return formatar.format(this.dataDevolucao);
+    }
+
+
+    public String dados() {
+        return "{" +
+                "Id: " + id +
+                ", Data do empréstimo: " + getDataEmprestimoFormormatada() +
+                ", Devolução: " + getDataDevolucaoFormatada() +
+                ", Livro: " + livro.getTitulo() +
+                ", Cliente: " + cliente.getNome() +
+                ", Cpf: " + cliente.getCpf() +
+                ", Status: " + status + '\'' +
+                '}';
+    }
 }
