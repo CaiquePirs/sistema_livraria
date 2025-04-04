@@ -76,6 +76,8 @@ public class BibliotecaRepository {
 
                 ResultSet rs = stmt.executeQuery(sql);
                 while(rs.next()) {
+                 
+                  // Armazena os valores dos registros de cada coluna da tabela `emprestimos`
                  int id_emprestimo = rs.getInt("id");
                  int id_cliente = rs.getInt("idCliente");
                  int id_livro = rs.getInt("idLivro");
@@ -87,7 +89,7 @@ public class BibliotecaRepository {
                  ClienteService clienteService = new ClienteService();
                  Cliente cliente = clienteService.pesquisar(id_cliente);
 
-                 // Pesquisa o livro pelo id_livro e retorna os dados do Livro empréstado
+                 // Pesquisa o livro pelo id_livro e retorna os dados do Livro emprestado
                  LivroService livroService = new LivroService();
                  Livro livro = livroService.pesquisar(id_livro);
 
@@ -96,7 +98,7 @@ public class BibliotecaRepository {
                  emprestimo.setDataDevolucao(data_devolucao);
                  emprestimo.setStatus(status);
 
-                 // Adiciona cada empréstimo cadastrado na lista de empréstimos
+                 // Adiciona cada um dos emprestimo na lista de emprestimos 
                  emprestimos.add(emprestimo);
                 }
             }
