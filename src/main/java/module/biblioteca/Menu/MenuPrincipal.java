@@ -3,9 +3,9 @@ package module.biblioteca.Menu;
 import java.util.Scanner;
 
 public class MenuPrincipal {
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
-    public void menuInicial() {
+    public static void menuInicial() {
         System.out.println("\nMenu inicial");
         System.out.println("(1) - Menu Cliente");
         System.out.println("(2) - Menu Livro");
