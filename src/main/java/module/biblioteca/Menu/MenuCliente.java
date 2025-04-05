@@ -7,12 +7,12 @@ import java.sql.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuCliente extends MenuPrincipal {
-    private Scanner scanner = new Scanner(System.in);
-    private ClienteService service = new ClienteService();
+public class MenuCliente{
+    Scanner scanner = new Scanner(System.in);
+    ClienteService service = new ClienteService();
 
-    public void menuCliente(){
-        System.out.println("\nMenu Cliente");
+    public void menu(){
+        System.out.println("\nMenu cliente");
         System.out.println("(1) - Cadastrar cliente");
         System.out.println("(2) - Atualizar cliente");
         System.out.println("(3) - Excluir cliente");
@@ -42,7 +42,7 @@ public class MenuCliente extends MenuPrincipal {
 
                        // Realiza o cadastro do cliente no banco de dados
                        service.Cadastrar(nome, email, cpf, dataNascimento);
-                       menuCliente(); // Volta para o menu cliente
+                       menu(); // Volta para o menu cliente
 
                    } catch (InputMismatchException | IllegalArgumentException e){
                        System.out.println("Entrada invalida, digite o valor válido!");
@@ -71,7 +71,7 @@ public class MenuCliente extends MenuPrincipal {
 
                     // Realiza a atualização dos dados do cliente no banco de dados
                     service.atualizar(id, nomeNovo, emailNovo, cpfNovo, dataNascimentoNova);
-                    menuCliente(); // retoma ao menu do cliente
+                    menu(); // retoma ao menu do cliente
 
             } catch (InputMismatchException | IllegalArgumentException e){
                     System.out.println("Entrada invalida, digite o valor válido!\n");
@@ -84,7 +84,7 @@ public class MenuCliente extends MenuPrincipal {
                         System.out.print("Informe o ID do cliente: ");
                         int idCliente = scanner.nextInt();
                         service.excluir(idCliente); // Realiza a exclusão do cliente no banco de dados
-                        menuCliente(); // Volta para o menu Cliente
+                        menu(); // Volta para o menu Cliente
 
                     } catch (InputMismatchException | IllegalArgumentException e){
                         System.out.println("Entrada invalida, digite o valor válido!");
@@ -100,7 +100,7 @@ public class MenuCliente extends MenuPrincipal {
                     // Retorna os dados do cliente Cadastrado
                     Cliente cliente = service.pesquisar(id_cliente);
                     System.out.println(cliente.dados()); // Exibe os dados do cliente
-                    menuCliente(); // Volta para o menu Cliente
+                    menu(); // Volta para o menu Cliente
 
             } catch (InputMismatchException | IllegalArgumentException e){
                      System.out.println("Entrada invalida, digite o valor válido!");
@@ -109,7 +109,8 @@ public class MenuCliente extends MenuPrincipal {
 
 
                 case 5:
-                    menuPrincipal();
+                   MenuPrincipal menuPrincipal = new MenuPrincipal();
+                    menuPrincipal.menu();
                     break;
 
                 default:
