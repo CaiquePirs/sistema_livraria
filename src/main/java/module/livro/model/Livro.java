@@ -63,11 +63,15 @@ public class Livro {
         return formatar.format(this.dataCadastro);
     }
 
-    // Formata a data de atualização livro para o padrão BR
+    // Valida se a data está null (vazia) e formata a data de atualização
     public String getDataAtualizacaoFormatada() {
-        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
-        return formatar.format(this.dataAtualizacao);
-    }
+       if(dataAtualizacao == null || dataAtualizacao.equals("")){
+        return "Atualizado";
+       }else {
+           SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+           return formatar.format(this.dataAtualizacao);
+       }
+       }
 
     public String dados(){
         return "{Id: " + id + ", Titulo: " + titulo
