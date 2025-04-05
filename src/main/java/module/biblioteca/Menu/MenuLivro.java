@@ -6,7 +6,7 @@ import module.livro.service.LivroService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuLivro{
+public class MenuLivro extends MenuPrincipal{
     Scanner scanner = new Scanner(System.in);
     LivroService service = new LivroService();
 
@@ -17,11 +17,12 @@ public class MenuLivro{
             System.out.println("(3) - Excluir livro");
             System.out.println("(4) - Pesquisar livro");
             System.out.println("(5) - Voltar ao menu principal");
+            System.out.println("(6) - Encerrar");
             System.out.print("Opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine();
 
-            while (opcao != 5) {
+            while (opcao != 6) {
                 switch (opcao) {
                     case 1:
                         System.out.println("\t\n------Cadastrar Livro------");
@@ -95,8 +96,7 @@ public class MenuLivro{
                         break;
 
                     case 5:
-                        MenuPrincipal menuPrincipal = new MenuPrincipal();
-                        menuPrincipal.menu();
+                        menuInicial();
                         break;
 
                     default:
@@ -104,5 +104,7 @@ public class MenuLivro{
                         break;
                 }
             }
+        // Exibindo mensagem personalizada caso a opção do menu seja igual a 6
+        System.out.println("\t------Obrigado por utilizar o nosso sistema------");
     }
 }

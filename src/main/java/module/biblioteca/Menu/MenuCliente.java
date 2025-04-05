@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuCliente{
+public class MenuCliente extends MenuPrincipal{
     Scanner scanner = new Scanner(System.in);
     ClienteService service = new ClienteService();
 
@@ -18,11 +18,12 @@ public class MenuCliente{
         System.out.println("(3) - Excluir cliente");
         System.out.println("(4) - Pesquisar cliente");
         System.out.println("(5) - Voltar ao menu principal");
+        System.out.println("(6) - Encerrar");
         System.out.print("Opção: ");
         int opcao = scanner.nextInt();
         scanner.nextLine();
 
-        while (opcao != 5) {
+        while (opcao != 6) {
             switch (opcao) {
                 case 1:
                     System.out.println("\t\n------Cadastrar Cliente------");
@@ -107,10 +108,8 @@ public class MenuCliente{
                  }
                     break;
 
-
                 case 5:
-                   MenuPrincipal menuPrincipal = new MenuPrincipal();
-                    menuPrincipal.menu();
+                    menuInicial();
                     break;
 
                 default:
@@ -118,6 +117,7 @@ public class MenuCliente{
                     break;
             }
         }
-
+        // Exibindo mensagem personalizada caso a opção do menu seja igual a 6
+        System.out.println("\t------Obrigado por utilizar o nosso sistema------");
     }
 }
