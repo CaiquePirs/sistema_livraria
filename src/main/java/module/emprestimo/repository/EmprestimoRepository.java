@@ -74,10 +74,11 @@ public class EmprestimoRepository {
                     LivroService livroService = new LivroService();
                     livro = livroService.pesquisar(id_livro);
 
-                    emprestimo = new Emprestimo(data_emprestimo, cliente, livro);
+                    emprestimo = new Emprestimo(cliente, livro);
                     emprestimo.setId(id_emprestimo);
                     emprestimo.setStatus(status);
                     emprestimo.setDataDevolucao(data_devolucao);
+                    emprestimo.setDataEmprestimo(data_emprestimo);
 
                 } else {
                     System.out.println("Id do empréstimo não encontrado");

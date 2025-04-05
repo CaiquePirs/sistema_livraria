@@ -8,9 +8,10 @@ import module.livro.model.Livro;
 import module.livro.service.LivroService;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class EmprestimoService {
-    public void criar(Date dataEmprestimo, int idCliente, int idLivro){
+    public void criar(int idCliente, int idLivro){
 
         // Consulta o id do cliente no banco de dados e retorna o Cliente
         Cliente cliente;
@@ -27,8 +28,13 @@ public class EmprestimoService {
             System.out.println("Esse livro já foi emprestado");
 
         } else {
+            // Pega Data em que o empréstimo está sendo criado
+            LocalDate data = LocalDate.now();
+            Date data_atual = Date.valueOf(data);
+
             // Realiza o empréstimo do livro
-            Emprestimo emprestimo = new Emprestimo(dataEmprestimo, cliente, livro);
+            Emprestimo emprestimo = new Emprestimo(cliente, livro);
+            emprestimo.setDataEmprestimo(data_atual);
             EmprestimoRepository repository = new EmprestimoRepository();
             repository.criar(emprestimo);
         }

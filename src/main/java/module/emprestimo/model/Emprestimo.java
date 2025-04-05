@@ -14,8 +14,7 @@ public class Emprestimo {
     private Cliente cliente;
     private String status;
 
-    public Emprestimo(Date dataEmprestimo, Cliente cliente, Livro livro){
-        this.dataEmprestimo = dataEmprestimo;
+    public Emprestimo(Cliente cliente, Livro livro){
         this.cliente = cliente;
         this.livro = livro;
     }
