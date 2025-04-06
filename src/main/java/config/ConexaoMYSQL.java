@@ -10,9 +10,9 @@ public class ConexaoMYSQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(
-                    ConfigBD.getUrl(),
-                    ConfigBD.getUser(),
-                    ConfigBD.getPassword()
+                    ConfigBD.getUrl(), // Obtém a url do banco de dados
+                    ConfigBD.getUser(), //  Obtém a credêncial do usuário para acessar o banco de dados
+                    ConfigBD.getPassword() // Obtém a senha de acesso ao banco de dados
             );
 
         } catch (ClassNotFoundException e) {
