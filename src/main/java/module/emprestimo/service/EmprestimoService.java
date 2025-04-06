@@ -11,16 +11,18 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class EmprestimoService {
+    private EmprestimoRepository repository = new EmprestimoRepository();
+    private ClienteService clienteService = new ClienteService();
+    private LivroService livroService = new LivroService();
+
     public void criar(int idCliente, int idLivro){
 
-        // Consulta o id do cliente no banco de dados e retorna o Cliente
+        // Consulta o id do cliente no banco de dados e retorna os dados do Cliente
         Cliente cliente;
-        ClienteService clienteService = new ClienteService();
         cliente = clienteService.pesquisar(idCliente);
 
-        // Consulta o id do livro no banco de dados e retorna o Livro
+        // Consulta o id do livro no banco de dados e retorna os dados do Livro
         Livro livro;
-        LivroService livroService = new LivroService();
         livro = livroService.pesquisar(idLivro);
 
         // Valida se o livro já está emprestado
@@ -35,24 +37,20 @@ public class EmprestimoService {
             // Realiza o empréstimo do livro
             Emprestimo emprestimo = new Emprestimo(cliente, livro);
             emprestimo.setDataEmprestimo(data_atual);
-            EmprestimoRepository repository = new EmprestimoRepository();
             repository.criar(emprestimo);
         }
 
     }
 
     public Emprestimo pesquisar(int id ){
-        EmprestimoRepository repository = new EmprestimoRepository();
         return repository.pesquisar(id);
     }
 
     public void devolver(int id){
-        EmprestimoRepository repository = new EmprestimoRepository();
         repository.devolver(id);
     }
 
     public void excluir(int id){
-        EmprestimoRepository repository = new EmprestimoRepository();
         repository.excluir(id);
     }
 

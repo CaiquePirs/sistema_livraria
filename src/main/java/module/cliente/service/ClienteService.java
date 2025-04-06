@@ -8,7 +8,7 @@ import java.sql.Date;
 public class ClienteService {
     private ClienteRepository repository = new ClienteRepository();
 
-    public void Cadastrar(String nome, String email, String cpf, Date dataNascimento){
+    public void cadastrar(String nome, String email, String cpf, Date dataNascimento){
         Cliente cliente = new Cliente(nome, email, cpf, dataNascimento);
         repository.criar(cliente);
     }
@@ -20,14 +20,12 @@ public class ClienteService {
     }
 
     public void excluir(int id){
-        ClienteRepository clienteRepository = new ClienteRepository();
-        clienteRepository.excluir(id);
+        repository.excluir(id);
     }
 
     public Cliente pesquisar(int id){
         Cliente cliente;
-        ClienteRepository clienteRepository = new ClienteRepository();
-        cliente = clienteRepository.pesquisar(id);
+        cliente = repository.pesquisar(id);
         return cliente;
     }
 

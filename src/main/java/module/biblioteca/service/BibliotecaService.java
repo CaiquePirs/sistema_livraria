@@ -7,7 +7,7 @@ import module.livro.model.Livro;
 import java.util.List;
 
 public class BibliotecaService{
-    BibliotecaRepository repository = new BibliotecaRepository();
+    private BibliotecaRepository repository = new BibliotecaRepository();
 
     public List<Cliente> listarClientes(){
         // Recebe a lista de clientes vinda do banco de dados

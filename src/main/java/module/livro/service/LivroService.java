@@ -10,7 +10,7 @@ public class LivroService {
     private  LivroRepository repository = new LivroRepository();
 
     public void cadastrar(String titulo, String autor){
-        // Pega a data "atual" que o livro está sendo Criado e atualiza a data automaticamente
+        // Pega a data "atual" que o livro está sendo criado e atualiza a data automaticamente
         LocalDate data = LocalDate.now();
         Date data_atualizacao = Date.valueOf(data);
 
@@ -38,13 +38,11 @@ public class LivroService {
 
     public Livro pesquisar(int id){
         Livro livro;
-        LivroRepository repository = new LivroRepository();
         livro = repository.pesquisar(id);
         return livro;
     }
 
     public void excluir(int id){
-        LivroRepository repository = new LivroRepository();
         repository.excluir(id);
     }
 

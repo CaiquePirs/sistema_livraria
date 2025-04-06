@@ -72,7 +72,7 @@ public class MenuCliente extends MenuPrincipal {
             Date dataNascimento = Date.valueOf(dataNascimentoString);
 
             // Cadastra o cliente no banco de dados e retorna a confirmação
-            service.Cadastrar(nome, email, cpf, dataNascimento);
+            service.cadastrar(nome, email, cpf, dataNascimento);
 
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao cadastrar cliente. Verifique os dados e tente novamente.");
