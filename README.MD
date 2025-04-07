@@ -84,7 +84,7 @@ Arquivo `database.properties`:
 ```properties
 db.url=jdbc:mysql://localhost:3306/livraria
 db.user=root
-db.password=sua_senha
+db.password=senha
 ```
 
 ---
