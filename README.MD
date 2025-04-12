@@ -80,7 +80,7 @@ A conexão com o banco de dados é feita via JDBC. As credenciais são carregada
 
 ## 🔧 Configuração do Banco
 
-Arquivo `database.properties`:
+Adicione o arquivo `database.properties` na pasta **resources**:
 ```properties
 db.url=jdbc:mysql://localhost:3306/livraria
 db.user=root
