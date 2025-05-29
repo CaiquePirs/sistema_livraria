@@ -1,6 +1,6 @@
 # 📚 LivrariaApp
 
-Olá galera! O **LivrariaApp** é um sistema em Java para gerenciamento de uma biblioteca, oferecendo funcionalidades completas para **cadastrar, atualizar, listar, pesquisar e excluir** **clientes**, **livros** e **empréstimos**. Desenvolvido com uma arquitetura modular baseada em camadas e acesso a banco de dados MySQL via JDBC, o sistema é executado totalmente via terminal, com menus intuitivos e operações encadeadas.
+O **LivrariaApp** é um sistema em Java para gerenciamento de uma biblioteca, oferecendo funcionalidades completas para **cadastrar, atualizar, listar, pesquisar e excluir** **clientes**, **livros** e **empréstimos**. Desenvolvido com uma arquitetura modular baseada em camadas e acesso a banco de dados MySQL via JDBC, o sistema é executado totalmente via terminal, com menus intuitivos e operações encadeadas.
 
 ---
 
