@@ -1,9 +1,9 @@
 package module.biblioteca.view;
 
+import java.util.InputMismatchException;
+
 import module.emprestimo.model.Emprestimo;
 import module.emprestimo.service.EmprestimoService;
-
-import java.util.InputMismatchException;
 
 public class MenuEmprestimo extends MenuPrincipal {
    private EmprestimoService service = new EmprestimoService();
@@ -69,7 +69,6 @@ public class MenuEmprestimo extends MenuPrincipal {
             System.out.print("Informe o ID do livro: ");
             int id_livro = scanner.nextInt();
 
-            // Realiza o empréstimo do livro no banco de dados e retorna a confirmação
             service.criar(id_cliente, id_livro);
 
         } catch (InputMismatchException | IllegalArgumentException e) {
@@ -84,7 +83,6 @@ public class MenuEmprestimo extends MenuPrincipal {
             int id_emprestimo = scanner.nextInt();
             scanner.nextLine();
 
-            // Recebe os dados do empréstimo e exibe as informações
             Emprestimo emprestimo = service.pesquisar(id_emprestimo);
             System.out.println(emprestimo.dados());
 
@@ -99,7 +97,6 @@ public class MenuEmprestimo extends MenuPrincipal {
             System.out.print("Informe o ID do empréstimo: ");
             int id_emprestimo = scanner.nextInt();
 
-            // Realiza a devolução do livro no banco de dados e retorna a confirmação
             service.devolver(id_emprestimo);
 
         } catch (InputMismatchException | IllegalArgumentException e) {
@@ -113,7 +110,6 @@ public class MenuEmprestimo extends MenuPrincipal {
             System.out.print("Informe o ID do empréstimo: ");
             int id_emprestimo = scanner.nextInt();
 
-            // Realiza a exclusão do empréstimo no banco de dados e retorna a confirmação
             service.excluir(id_emprestimo);
 
         } catch (InputMismatchException | IllegalArgumentException e) {

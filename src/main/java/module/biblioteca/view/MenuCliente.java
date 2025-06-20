@@ -1,10 +1,10 @@
 package module.biblioteca.view;
 
-import module.cliente.model.Cliente;
-import module.cliente.service.ClienteService;
-
 import java.sql.Date;
 import java.util.InputMismatchException;
+
+import module.cliente.model.Cliente;
+import module.cliente.service.ClienteService;
 
 public class MenuCliente extends MenuPrincipal {
     private ClienteService service = new ClienteService();
@@ -71,7 +71,6 @@ public class MenuCliente extends MenuPrincipal {
             String dataNascimentoString = scanner.nextLine();
             Date dataNascimento = Date.valueOf(dataNascimentoString);
 
-            // Cadastra o cliente no banco de dados e retorna a confirmação
             service.cadastrar(nome, email, cpf, dataNascimento);
 
         } catch (IllegalArgumentException e) {
@@ -99,7 +98,6 @@ public class MenuCliente extends MenuPrincipal {
             String dataString = scanner.nextLine();
             Date dataNascimentoNova = Date.valueOf(dataString);
 
-            // Atualiza os dados do cliente e retorna a confirmação
             service.atualizar(id, nomeNovo, emailNovo, cpfNovo, dataNascimentoNova);
 
         } catch (InputMismatchException e) {
@@ -117,7 +115,6 @@ public class MenuCliente extends MenuPrincipal {
             int idCliente = scanner.nextInt();
             scanner.nextLine();
 
-            // Exclui o cliente no banco de dados e retorna a confirmação
             service.excluir(idCliente);
 
         } catch (InputMismatchException e) {
@@ -135,7 +132,6 @@ public class MenuCliente extends MenuPrincipal {
             int id_cliente = scanner.nextInt();
             scanner.nextLine();
 
-            // Pesquisa o cliente no banco de dados e retorna os dados do cliente
             Cliente cliente = service.pesquisar(id_cliente);
             System.out.println(cliente.dados());
 

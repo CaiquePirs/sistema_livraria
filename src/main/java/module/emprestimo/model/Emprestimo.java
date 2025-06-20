@@ -1,10 +1,10 @@
 package module.emprestimo.model;
 
-import module.cliente.model.Cliente;
-import module.livro.model.Livro;
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+
+import module.cliente.model.Cliente;
+import module.livro.model.Livro;
 
 public class Emprestimo {
     private int id;
@@ -37,13 +37,11 @@ public class Emprestimo {
     public Date getDataDevolucao() { return dataDevolucao; }
     public void setDataDevolucao(Date dataDevolucao) { this.dataDevolucao = dataDevolucao; }
 
-    // Método para exibir a data formatada para o padrão BR
     public String getDataEmprestimoFormormatada() {
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         return formatar.format(this.dataEmprestimo);
     }
 
-    // Formata a data e valida se está null (vazia)
     public String getDataDevolucaoFormatada() {
         if(dataDevolucao == null || dataDevolucao.equals("")){
             return "Não devolvido";

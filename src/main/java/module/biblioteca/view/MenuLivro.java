@@ -1,9 +1,9 @@
 package module.biblioteca.view;
 
+import java.util.InputMismatchException;
+
 import module.livro.model.Livro;
 import module.livro.service.LivroService;
-
-import java.util.InputMismatchException;
 
 public class MenuLivro extends MenuPrincipal {
     private LivroService service = new LivroService();
@@ -69,7 +69,6 @@ public class MenuLivro extends MenuPrincipal {
             System.out.print("Informe o autor: ");
             String autor = scanner.nextLine();
 
-            // Realiza o cadastro do livro no banco de dados
             service.cadastrar(titulo, autor);
 
         } catch (InputMismatchException | IllegalArgumentException e) {
@@ -93,7 +92,6 @@ public class MenuLivro extends MenuPrincipal {
             System.out.print("Informe o status do livro: ");
             String status = scanner.nextLine();
 
-            // Atualiza os dados do livro no banco de dados
             service.atualizar(id, titulo, autor, status);
 
         } catch (InputMismatchException | IllegalArgumentException e) {
@@ -107,7 +105,6 @@ public class MenuLivro extends MenuPrincipal {
             System.out.print("Informe o ID do livro: ");
             int idLivro = scanner.nextInt();
 
-            // Realiza a exclusão do livro no banco de dados
             service.excluir(idLivro);
 
         } catch (InputMismatchException | IllegalArgumentException e) {
@@ -121,7 +118,6 @@ public class MenuLivro extends MenuPrincipal {
             System.out.print("Informe o ID do livro: ");
             int id_livro = scanner.nextInt();
 
-            // Retorna e exibe os dados do livro Cadastrado
             Livro livro = service.pesquisar(id_livro);
             System.out.println(livro.dados());
 

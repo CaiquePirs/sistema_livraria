@@ -9,7 +9,6 @@ public class ConfigBD {
 
     static {
         try{
-            // Lê as credências de acesso ao banco de dados vindas do arquivo "database.properties"
             FileInputStream file = new FileInputStream("src/main/resources/database.properties");
             properties.load(file);
         } catch (IOException e){
@@ -17,7 +16,6 @@ public class ConfigBD {
         }
     }
 
-    // Retorna as credências de acesso do banco de dados
     public static String getUrl() {
         return properties.getProperty("db.url");
     }

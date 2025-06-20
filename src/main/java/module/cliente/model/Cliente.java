@@ -31,7 +31,6 @@ public class Cliente {
     public String getEmail() { return email;}
     public void setEmail(String email) { this.email = email; }
 
-    // Formata a data de nascimento do cliente para o formato BR
     public String getDataNascimentoFormatada() {
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         return formatar.format(this.dataNascimento);

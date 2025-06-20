@@ -1,12 +1,12 @@
 package module.biblioteca.view;
 
+import java.util.InputMismatchException;
+import java.util.List;
+
 import module.biblioteca.service.BibliotecaService;
 import module.cliente.model.Cliente;
 import module.emprestimo.model.Emprestimo;
 import module.livro.model.Livro;
-
-import java.util.InputMismatchException;
-import java.util.List;
 
 public class MenuBiblioteca extends MenuPrincipal {
     private BibliotecaService service = new BibliotecaService();
@@ -59,24 +59,20 @@ public class MenuBiblioteca extends MenuPrincipal {
     }
     private void buscarClientes(){
         System.out.println("\t-----Lista de Clientes-----");
-
-        // Busca e exibe a lista dos clientes cadastrados no banco de dados
         List<Cliente> clientes = service.listarClientes();
         clientes.forEach(cliente -> System.out.println(cliente.dados()));
     }
 
     private void buscarLivros(){
         System.out.println("\t-----Lista de Livros-----");
-
-        // Busca e exibe a lista dos livros cadastrados no banco de dados
         List<Livro> livros = service.listarLivros();
+
         livros.forEach(livro -> System.out.println(livro.dados()));
     }
     private void buscarEmprestimos(){
         System.out.println("\t-----Lista de Empréstimos-----");
-
-        // Busca e exibe a lista dos empréstimos cadastrados no banco de dados
         List<Emprestimo> emprestimos = service.listarEmprestimos();
+        
         emprestimos.forEach(emprestimo -> System.out.println(emprestimo.dados()));
     }
 
