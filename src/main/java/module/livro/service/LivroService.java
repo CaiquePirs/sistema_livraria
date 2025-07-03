@@ -10,7 +10,6 @@ public class LivroService {
     private  LivroRepository repository = new LivroRepository();
 
     public void cadastrar(String titulo, String autor){
-        // Pega a data "atual" que o livro está sendo criado e atualiza a data automaticamente
         LocalDate data = LocalDate.now();
         Date data_atualizacao = Date.valueOf(data);
 
@@ -18,12 +17,10 @@ public class LivroService {
         livro.setDataCadastro(data_atualizacao);
         livro.setDataAtualizacao(data_atualizacao);
 
-        // Chama o repository para cadastrar o livro no banco no dados
         repository.cadastrar(livro);
     }
 
     public void atualizar(int id, String titulo, String autor, String status){
-        // Pega a data "atual" que o livro está sendo atualizado
         LocalDate data = LocalDate.now();
         Date data_atualizacao = Date.valueOf(data);
 
@@ -32,7 +29,6 @@ public class LivroService {
         livro.setStatus(status);
         livro.setId(id);
 
-        // Chama o repository para realizar as alterações do livro no banco de dados
         repository.atualizar(livro);
     }
 

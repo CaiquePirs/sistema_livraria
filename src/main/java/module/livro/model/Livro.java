@@ -57,13 +57,11 @@ public class Livro {
         this.status = status;
     }
 
-    // Formata a data de cadastro do livro para o padrão BR
     public String getDataCadastroFormatada() {
         SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
         return formatar.format(this.dataCadastro);
     }
 
-    // Valida se a data está null (vazia) e formata a data de atualização
     public String getDataAtualizacaoFormatada() {
        if(dataAtualizacao == null || dataAtualizacao.equals("")){
         return "Atualizado";
